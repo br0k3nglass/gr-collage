@@ -8,7 +8,7 @@ import requests
 import sys
 
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from natsort import natsorted
 
 
@@ -41,6 +41,11 @@ def find_largest_factors(even_number):
             break
 
     return factor1, factor2
+
+
+def current_day_of_year():
+    today = date.today()
+    return today.timetuple().tm_yday
 
 
 parser = argparse.ArgumentParser()
@@ -82,6 +87,12 @@ parser.add_argument(
     action="store_true",
     help="Swaps preference from width to height, for rectangular layout algorithm. Enable if you want a wide image. Also use min-height."
 )
+parser.add_argument(
+    "-y",
+    "--year-to-date",
+    action="store_true",
+    help='Which date to use to limit how many books are shown. Default: date_read. Set to "none" to show all books'
+)
 
 args = parser.parse_args()
 
@@ -89,6 +100,11 @@ args = parser.parse_args()
 page = 0
 covers = []
 done = False
+
+if args.year_to_date:
+    args.ago = current_day_of_year()
+    print(f"Collage building using books read in the last {args.ago} days.")
+
 
 while not done:
     page += 1
