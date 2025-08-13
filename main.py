@@ -91,7 +91,7 @@ parser.add_argument(
     "-y",
     "--year-to-date",
     action="store_true",
-    help='Which date to use to limit how many books are shown. Default: date_read. Set to "none" to show all books'
+    help="Use to generate a collage of books read this year so far. Overrides ago argument value."
 )
 
 args = parser.parse_args()
