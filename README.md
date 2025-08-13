@@ -52,6 +52,9 @@ You can customize the output via the following optional parameters:
 
 -s, --swap-width-height
   Swaps preference from width to height, for rectangular layout algorithm. Enable if you want a wide image. Also use min-height.
+ 
+-y, --year-to-date
+  Use to generate a collage of books read this year so far (vs one year ago, which is the default value of ago arg). Overrides ago argument value. 
 ```
 
 # Notes
